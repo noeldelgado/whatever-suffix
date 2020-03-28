@@ -1,0 +1,13 @@
+# dotenv
+.env
+
+# npm
+node_modules
+
+# parcel
+.cache
+.parcel-cache
+temp
+
+# osx
+.DS_Store

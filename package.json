@@ -26,6 +26,7 @@
     "@material-ui/lab": "^4.0.0-alpha.47",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-textfit": "^1.1.0",
     "safecolor": "^1.0.1",
     "share-url": "^1.0.0",
     "webfontloader": "^1.6.28",

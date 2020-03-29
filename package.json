@@ -1,6 +1,18 @@
 {
   "name": "whatever-suffix",
   "version": "1.0.0",
-  "author": "Noel Delgado <auhcsei@gmail.com> (http://pixelia.me/)",
-  "license": "MIT"
+  "author": "Noel Delgado <pixelia.me@gmail.com> (https://pixelia.me/)",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel src/index.html --out-dir temp --no-cache",
+    "build": "rm -rf docs && parcel build src/index.html --experimental-scope-hoisting --out-dir docs --public-url ./"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "postcss-modules": "^1.5.0"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }

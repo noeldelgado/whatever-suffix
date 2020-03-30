@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel src/index.html --out-dir temp --no-cache",
     "build": "rm -rf docs && parcel build src/index.html --experimental-scope-hoisting --out-dir docs --public-url ./",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fonts-list": "./scripts/google-fonts-list.js"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

@@ -36,6 +36,13 @@ class App extends Component {
       text: null,
       suffix: rand(internals.SUFFIXES)
     };
+
+    WebFont.load({
+      google: {
+        families: ['Roboto:300,400,500,700&display=swap']
+      },
+      classes: false
+    });
   }
 
   async componentDidMount() {

@@ -20,6 +20,9 @@ const CssPopover = withStyles({
 
 const CssTextField = withStyles({
   root: {
+    '& label': {
+      color: 'var(--app-color-text)',
+    },
     '& label.Mui-focused': {
       color: 'var(--app-color-text)',
     },
@@ -41,8 +44,8 @@ const Header = ({ suffix, onChange }) => {
         <svg width="44px" height="44px" viewBox="0 0 44 44">
           <path stroke="currentColor" d="M2.5 2.5h41v41h-41z" fill="none"/>
           <path stroke="currentColor" d="M.5.5h41v41H.5z" fill="none"/>
-          <text style={{fontWeight: 700}}>
-            <tspan x="11" y="37">WS</tspan>
+          <text style={{fontSize: '18px', fontWeight: 700}}>
+            <tspan x="14" y="34">w_</tspan>
           </text>
         </svg>
         <Box mx={1}>

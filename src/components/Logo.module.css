@@ -1,0 +1,19 @@
+.svg {
+  display: block;
+  width: 12vmax;
+  height: 12vmax;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 6vmax;
+  font-weight: 700;
+  color: var(--app-color-main);
+}

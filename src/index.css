@@ -1,0 +1,50 @@
+:root {
+  --app-color-main: #fff;
+  --app-color-text: #000;
+  --app-color-bg: #303030;
+  font-size: 16px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--app-color-bg);
+  color: rgba(255, 255, 255, 0.87);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+svg {
+  fill: currentColor;
+}
+
+#root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  width: 100%;
+  max-height: 100%;
+}
+@media (max-width: 1024px) {
+  #root {
+    padding: 0.5rem;
+  }
+}
+
+/* Material-UI styles hack
+ * Have some issues with the order styles are injected, resulting on base
+ * classes overriding sub-classes styles.
+ * The issue does not happen on development but on build only
+ **/
+.MuiPaper-root.MuiAlert-filledWarning {
+  color: #fff;
+  background-color: #ff9800;
+}

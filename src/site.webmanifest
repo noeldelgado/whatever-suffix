@@ -1,0 +1,8 @@
+{
+    "name": "whatever suffix",
+    "short_name": "WS",
+    "start_url": "/index.html?utm_source=homescreen",
+    "background_color": "#303030",
+    "theme_color": "#303030",
+    "display": "standalone"
+}

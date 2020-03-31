@@ -28,6 +28,7 @@ npm start
 - Color combinations using [jessuni/SafeColor]
 - [malte-wessel/react-textfit] to ensure the text is kept on a single line
 - Build using [Parcel] bundler (babel, react, postcss-modules)
+- Favicons generated using [favicon.io]
 
 ## License
 MIT © [Noel Delgado](http://pixelia.me/)
@@ -42,3 +43,4 @@ MIT © [Noel Delgado](http://pixelia.me/)
 [jessuni/SafeColor]: https://github.com/jessuni/SafeColor
 [malte-wessel/react-textfit]: https://github.com/malte-wessel/react-textfit
 [Parcel]: https://parceljs.org/
+[favicon.io]: (https://favicon.io/favicon-converter/)

@@ -55,10 +55,6 @@ const Info = () => {
 
       <Typography component='ul' gutterBottom>
         <li>
-          Collection of English words using {''}
-          <GituhubLink handler='sindresorhus/word-list'/>
-        </li>
-        <li>
           Material Design, Icons and Fonts by <TwitterLink handler='Google'/>
         </li>
         <li>
@@ -69,7 +65,13 @@ const Info = () => {
           Color combinations using <GituhubLink handler='jessuni/SafeColor'/>
         </li>
         <li>
+          <GituhubLink handler='malte-wessel/react-textfit'/> to ensure the text is kept on a single line
+        </li>
+        <li>
           Build using <GeneralLink url='https://parceljs.org/' text='Parcel'/> bundler
+        </li>
+        <li>
+          Favicons generated using <GeneralLink url='https://favicon.io/favicon-converter/' text='favicon.io'/>
         </li>
       </Typography>
 

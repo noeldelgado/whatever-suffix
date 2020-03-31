@@ -3,6 +3,8 @@ Random word-based-app inspired by [@freezydorito]’s [@WhateverScript] twitter 
 
 It uses [sindresorhus/word-list] package to randomly select English words from the [Letterpress Word List] with over 274,925 entries.
 
+https://noeldelgado.github.io/whatever-suffix/
+
 ![screenshot](./screen-shot.png)
 
 ## Dev

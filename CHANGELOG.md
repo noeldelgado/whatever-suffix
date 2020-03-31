@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [0.1.0] - [#1](/pull/1) - 2020-03-30
+## [0.1.0] - 2020-03-30
 ### Added
 - [Parcel](https://parceljs.org/) bundler (babel, react, postcss-modules)
 - [Material-UI](https://github.com/mui-org/material-ui)

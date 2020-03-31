@@ -20,6 +20,9 @@ const CssPopover = withStyles({
 
 const CssTextField = withStyles({
   root: {
+    '& label': {
+      color: 'var(--app-color-text)',
+    },
     '& label.Mui-focused': {
       color: 'var(--app-color-text)',
     },

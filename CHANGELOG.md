@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2020-03-31
+## Fixed
+- manifest start_url
+
 ## [0.1.1] - [#1](../../pull/1) - 2020-03-31
 ## Added
 - ℳ load Roboto font [`c4001d9`](https://github.com/noeldelgado/whatever-suffix/commit/c4001d9c0e4600f180a2e4e8e18f852a432e32a1)
@@ -24,6 +28,7 @@
 	- [.eslintignore](../blob/master/.eslintignore)
 - [.editorconfig](../blob/master/.editorconfig)
 
-[Unreleased]: https://github.com/noeldelgado/whatever-suffix/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/noeldelgado/whatever-suffix/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/noeldelgado/whatever-suffix/releases/tag/v0.1.0

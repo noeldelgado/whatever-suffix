@@ -42,7 +42,7 @@ const Header = ({ suffix, onChange }) => {
           <path stroke="currentColor" d="M2.5 2.5h41v41h-41z" fill="none"/>
           <path stroke="currentColor" d="M.5.5h41v41H.5z" fill="none"/>
           <text style={{fontWeight: 700}}>
-            <tspan x="11" y="37">WS</tspan>
+            <tspan x="14" y="36">WS</tspan>
           </text>
         </svg>
         <Box mx={1}>

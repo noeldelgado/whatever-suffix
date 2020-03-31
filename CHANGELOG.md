@@ -4,7 +4,9 @@
 
 ## [0.1.2] - 2020-03-31
 ## Fixed
-- manifest start_url
+- manifest `start_url`
+- :lock: 'rel' attribute value include 'noreferrer' keyword
+- :green_apple: 'apple-touch-icon' link element should not have 'sizes' attribute.
 
 ## [0.1.1] - [#1](../../pull/1) - 2020-03-31
 ## Added

@@ -27,7 +27,7 @@ const Footer = () => {
         <Button
           href={internals.getShareOnTwitterUrl()}
           target="_blank"
-          rel='noopener'
+          rel='noopener noreferrer'
           size='small'
           color='inherit'
           startIcon={<Twitter/>}
@@ -39,7 +39,7 @@ const Footer = () => {
         <Button
           href="https://pixelia.me"
           target="_blank"
-          rel='noopener'
+          rel='noopener noreferrer'
           size='small'
           color='inherit'
           aria-label='author’s page'

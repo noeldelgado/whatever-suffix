@@ -11,7 +11,7 @@ import Header from '/components/Header';
 import Logo from '/components/Logo';
 import Text from '/components/Text';
 import Footer from '/components/Footer';
-import { rand } from '/components/utils';
+import { rand } from '/utils';
 import GoogleFontsList from '/data/google-fonts-list.json';
 import styles from './App.module.css';
 

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
-import { rand } from '/components/utils';
+import { rand } from '/utils';
 import styles from './Logo.module.css';
 
 const internals = {

@@ -5,7 +5,7 @@ import { version } from '/../package.json';
 
 function GeneralLink({ url, text }) {
   return (
-    <Link href={url} color='inherit' underline='always' target='_blank' rel='noopener'>
+    <Link href={url} color='inherit' underline='always' target='_blank' rel='noopener noreferrer'>
       {text}
     </Link>
   );

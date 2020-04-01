@@ -83,7 +83,7 @@ const Header = ({ suffix, onChange }) => {
           <Button
             href={process.env.REPOSITORY}
             target='_blank'
-            rel='noopener'
+            rel='noopener noreferrer'
             size='small'
             color='inherit'
             aria-label='view source'

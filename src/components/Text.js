@@ -1,25 +1,33 @@
+const { count } = console;
+
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import { Box, Tooltip } from '@material-ui/core';
 import { Textfit } from 'react-textfit';
+import useGlobal from '/store';
 import styles from './Text.module.css';
 
-const Text = ({ text, suffix, fontPrimary }) => {
+const Text = () => {
+  count('Text');
+
+  const [globalState]  = useGlobal();
+  const { mainWord, suffix, font } = globalState;
+
+  if (!mainWord && !suffix) {
+    return void 0;
+  }
+
   return (
-    <Tooltip title={fontPrimary}>
-      <Box className={styles.text} mx={'auto'} style={{fontFamily: fontPrimary}}>
+    <Tooltip title={font}>
+      <Box
+        className={styles.text}
+        style={{fontFamily: font}}
+      >
         <Textfit mode='single' max={400}>
-          {text}{suffix}
+          {mainWord + suffix}
         </Textfit>
       </Box>
     </Tooltip>
   );
-};
-
-Text.propTypes = {
-  text: PropTypes.string.isRequired,
-  suffix: PropTypes.string.isRequired,
-  fontPrimary: PropTypes.string.isRequired
 };
 
 export default memo(Text);

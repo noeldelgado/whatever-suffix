@@ -66,6 +66,7 @@ export const newCombination = async (store) => {
     await store.actions.fonts.loadRandomFont();
     store.actions.app.setRandomColorsCombination();
     store.actions.words.setRandomWord();
+    store.actions.words.setRandomTagline();
     store.actions.app.setRandomLogoShape();
   }
   finally {

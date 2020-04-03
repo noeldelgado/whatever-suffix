@@ -1,6 +1,6 @@
 const { count } = console;
 
-import React, { memo } from 'react';
+import React, { memo, Fragment } from 'react';
 import { Box, Tooltip } from '@material-ui/core';
 import { Textfit } from 'react-textfit';
 import useGlobal from '/store';
@@ -10,23 +10,30 @@ const Text = () => {
   count('Text');
 
   const [globalState]  = useGlobal();
-  const { mainWord, suffix, font } = globalState;
+  const { mainWord, suffix, tagline, font } = globalState;
 
   if (!mainWord && !suffix) {
     return void 0;
   }
 
   return (
-    <Tooltip title={font}>
-      <Box
-        className={styles.text}
-        style={{fontFamily: font}}
-      >
-        <Textfit mode='single' max={400}>
-          {mainWord + suffix}
+    <Fragment>
+      <Tooltip title={font}>
+        <Box
+          className={styles.text}
+          style={{fontFamily: font}}
+        >
+          <Textfit mode='single' max={400}>
+            {mainWord + suffix}
+          </Textfit>
+        </Box>
+      </Tooltip>
+      <Box className={styles.tagline}>
+        <Textfit mode='single' max={40}>
+          {tagline}
         </Textfit>
       </Box>
-    </Tooltip>
+    </Fragment>
   );
 };
 

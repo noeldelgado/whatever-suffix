@@ -23,6 +23,7 @@ export default useGlobalHook(React, {
 
   mainWord: '',
   suffix: rand(internals.SUFFIXES),
+  tagline: '',
 
   font: 'sans-serif',
   logoShape: rand(internals.LOGOSHAPES)

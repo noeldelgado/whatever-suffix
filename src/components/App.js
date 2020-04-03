@@ -31,6 +31,7 @@ const App = () => {
         globalActions.app.setError(true, err.message);
         globalActions.app.newColorsCombination();
         globalActions.words.setRandomWord();
+        globalActions.words.setRandomTagline();
       }
       finally {
         globalActions.app.loading(false);

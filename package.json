@@ -32,6 +32,7 @@
     "react-textfit": "^1.1.0",
     "safecolor": "^1.0.1",
     "share-url": "^1.0.0",
+    "use-global-hook": "^0.1.12",
     "webfontloader": "^1.6.28",
     "word-list": "^3.1.0"
   }

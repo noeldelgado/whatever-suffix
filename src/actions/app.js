@@ -58,18 +58,20 @@ export const setRandomColorsCombination = () => {
  * Generates a whole new random combination
  * - sets and loads a new random font
  * - generates a new random color combination
- * - sets a new random word
+ * - sets a random logo shape
+ * - sets a random word
+ * - sets a random tagline
  */
 export const newCombination = async (store) => {
   store.actions.app.loading();
   try {
     await store.actions.fonts.loadRandomFont();
-    store.actions.app.setRandomColorsCombination();
-    store.actions.words.setRandomWord();
-    store.actions.words.setRandomTagline();
-    store.actions.app.setRandomLogoShape();
   }
   finally {
+    store.actions.app.setRandomColorsCombination();
+    store.actions.app.setRandomLogoShape();
+    store.actions.words.setRandomWord();
+    store.actions.words.setRandomTagline();
     store.actions.app.loading(false);
   }
 };

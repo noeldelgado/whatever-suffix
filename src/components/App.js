@@ -19,19 +19,16 @@ const App = () => {
   const [, setToggle] = useState(true);
   const { fetching, error, errorMessage } = globalState;
 
-  useEffect(function firstRun() {
-    count('firstRun');
+  useEffect(function setInitialLoadState() {
+    globalActions.app.loading();
+
     (async() => {
-      globalActions.app.loading();
       try {
         await globalActions.words.fetchWords();
         await globalActions.app.newCombination();
       }
       catch (err) {
         globalActions.app.setError(true, err.message);
-        globalActions.app.newColorsCombination();
-        globalActions.words.setRandomWord();
-        globalActions.words.setRandomTagline();
       }
       finally {
         globalActions.app.loading(false);
@@ -47,7 +44,7 @@ const App = () => {
     return () => clearInterval(id);
   }, [globalActions.app, globalActions.words]);
 
-  const newCombination = async () => {
+  async function newCombination() {
     try {
       await globalActions.app.newCombination();
     }

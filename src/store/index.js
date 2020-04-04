@@ -11,7 +11,7 @@ const internals = {
 };
 
 export default useGlobalHook(React, {
-  fetching: false,
+  fetching: true,
   error: false,
   errorMessage: '',
 

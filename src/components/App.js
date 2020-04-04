@@ -27,8 +27,6 @@ const App = () => {
   }, [globalActions.fonts]);
 
   useEffect(function setInitialLoadState() {
-    globalActions.app.loading();
-
     (async() => {
       try {
         await globalActions.words.fetchWords();

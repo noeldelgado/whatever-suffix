@@ -4,11 +4,7 @@ import * as actions from '/actions';
 
 import GoogleFontsList from '/data/google-fonts-list.json';
 import { rand } from '/utils';
-
-const internals = {
-  SUFFIXES: ['.js', 'script', '.io'],
-  LOGOSHAPES: ['rect', 'circle'],
-};
+import { DEFAULT_SUFFIXES, LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
 
 export default useGlobalHook(React, {
   fetching: true,
@@ -22,9 +18,9 @@ export default useGlobalHook(React, {
   wordsLen: 0,
 
   mainWord: '',
-  suffix: rand(internals.SUFFIXES),
+  suffix: rand(DEFAULT_SUFFIXES),
   tagline: '',
 
   font: 'sans-serif',
-  logoShape: rand(internals.LOGOSHAPES)
+  logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN)
 }, actions);

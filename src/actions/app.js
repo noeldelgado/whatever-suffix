@@ -1,8 +1,10 @@
 import SafeColor from 'safecolor';
 import { rand } from '/utils';
+import { LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
+
+const { log } = console;
 
 const internals = {
-  LOGOSHAPES: ['rect', 'circle'],
   colorComponentRe: new RegExp(/[^\d,]/g),
   /**
    * Transforms a CSS {rgb|hsl} color string into a color component
@@ -38,8 +40,10 @@ export const setError = (store, error = true, message = 'Unknown error') => {
   store.setState({ error, errorMessage: message });
 };
 
-export const setRandomLogoShape = (store) =>
-  store.setState({ logoShape: rand(internals.LOGOSHAPES) });
+export const setRandomLogoShape = (store) => {
+  log('setRandomLogoShape');
+  store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
+}
 
 /**
  * Genetates a random color combination and updates global CSS variables

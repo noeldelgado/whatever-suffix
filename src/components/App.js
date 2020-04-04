@@ -15,7 +15,7 @@ import styles from './App.module.css';
 
 const App = () => {
   const [globalState, globalActions] = useGlobal();
-  const [ready, setReady] = useState(false);
+  const [initialStateReady, setInitialStateReady] = useState(false);
   const [, setToggle] = useState(true);
   const { fetching, error, errorMessage } = globalState;
 
@@ -39,7 +39,7 @@ const App = () => {
       }
       finally {
         globalActions.app.loading(false);
-        setReady(true);
+        setInitialStateReady(true);
       }
     })();
 
@@ -60,11 +60,13 @@ const App = () => {
     }
   };
 
+  // count('App');
+
   return (
     <Box className={styles.app} bgcolor='var(--app-color-main)' color='var(--app-color-text)'>
       <Header/>
       <Box component='main' className={styles.main}>
-        {ready &&
+        {initialStateReady &&
           <Fragment>
             <Logo/>
             <Text/>

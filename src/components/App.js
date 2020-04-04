@@ -19,6 +19,13 @@ const App = () => {
   const [, setToggle] = useState(true);
   const { fetching, error, errorMessage } = globalState;
 
+  useEffect(function loadPageFont() {
+    (async() => {
+      try { await globalActions.fonts.loadFont('Roboto:300,400,500,700&display=swap'); }
+      catch (err) { /**/ }
+    })();
+  }, [globalActions.fonts]);
+
   useEffect(function setInitialLoadState() {
     globalActions.app.loading();
 

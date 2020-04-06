@@ -4,11 +4,10 @@ import { rand } from '/utils';
 
 /**
  * Loads a font from Google Fonts
- * @async
  * @param {string} family - font family name
  * @return {Promise<string|Error>}
  */
-export const loadFont = async (store, family) => {
+export const loadFont = (store, family) => {
   if (!family) throw new Error('No FontFamilyName given')
   return new Promise((resolve, reject) => {
     WebFont.load({

@@ -20,27 +20,29 @@ const internals = {
  * Updates state.fetching
  * @param {Bool} [fetching=true]
  */
-export const loading = (store, bool = true) =>
+export function loading(store, bool = true) {
   store.setState({ fetching: bool });
+}
 
 /**
  * Updates state.suffix
  * @param {string} suffix
  */
-export const setSuffix = (store, suffix) =>
+export function setSuffix(store, suffix) {
   store.setState({ suffix });
+}
 
 /**
  * Updates state{error, errorMessage}
  * @param {Bool} [error=true]
  * @param {string} [message='Unknown error']
  */
-export const setError = (store, error = true, message = 'Unknown error') => {
+export function setError(store, error = true, message = 'Unknown error') {
   if (!error) return store.setState({ error });
   store.setState({ error, errorMessage: message });
-};
+}
 
-export const setRandomLogoShape = (store) => {
+export function setRandomLogoShape(store) {
   log('setRandomLogoShape');
   store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
 }
@@ -48,7 +50,7 @@ export const setRandomLogoShape = (store) => {
 /**
  * Genetates a random color combination and updates global CSS variables
  */
-export const setRandomColorsCombination = () => {
+export function setRandomColorsCombination() {
   const mainColorString = new SafeColor().random();
   const textColor = new SafeColor({
     color: internals.getColorComponent(mainColorString)
@@ -56,7 +58,7 @@ export const setRandomColorsCombination = () => {
 
   document.documentElement.style.setProperty('--app-color-main', mainColorString);
   document.documentElement.style.setProperty('--app-color-text', textColor);
-};
+}
 
 /**
  * Generates a whole new random combination
@@ -66,7 +68,7 @@ export const setRandomColorsCombination = () => {
  * - sets a random word
  * - sets a random tagline
  */
-export const newCombination = async (store) => {
+export async function newCombination(store) {
   store.actions.app.loading();
   try {
     await store.actions.fonts.loadRandomFont();
@@ -78,4 +80,4 @@ export const newCombination = async (store) => {
     store.actions.words.setRandomTagline();
     store.actions.app.loading(false);
   }
-};
+}

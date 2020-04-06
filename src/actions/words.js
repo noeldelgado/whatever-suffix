@@ -19,18 +19,23 @@ const internals = {
  * Fetches words.txt file and updates the state.words with the result as an array
  * @async
  */
-export const fetchWords = async (store) => {
-  const wordsRes = await fetch(WordList, { cache: 'force-cache' });
-  const wordsData = await wordsRes.text();
-  const words = wordsData.split('\n');
-  store.setState({ words, wordsLen: words.length });
+export async function fetchWords(store) {
+  try {
+    const wordsRes = await fetch(WordList, { cache: 'force-cache' });
+    const wordsData = await wordsRes.text();
+    const words = wordsData.split('\n');
+    store.setState({ words, wordsLen: words.length });
+  }
+  catch(err) {
+    throw err;
+  }
 };
 
 /**
  * Selects a random word from the state.words registry array and sets it as the
  * state.mainWord value
  */
-export const setRandomWord = (store) => {
+export function setRandomWord(store) {
   const { words, wordsLen } = store.state;
   const mainWord = rand(words, wordsLen);
   store.setState({ mainWord });
@@ -41,7 +46,7 @@ export const setRandomWord = (store) => {
  * and sets it as the state.tagline value
  * @params {Number} [length=2..4] - number of words the tagline shold be composed from
  */
-export const setRandomTagline = (store, length = internals.getRandomIntInclusive(2, 4)) => {
+export function setRandomTagline(store, length = internals.getRandomIntInclusive(2, 4)) {
   const { words, wordsLen } = store.state;
   const tagline = Array.from({ length }, () => rand(words, wordsLen)).join(' ');
   store.setState({ tagline });

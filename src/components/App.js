@@ -72,12 +72,17 @@ const App = () => {
     catch (err) {
       globalActions.app.setError(true, err.message);
     }
-  };
+  }
 
   // count('App');
 
   return (
-    <Box className={styles.app} bgcolor='var(--app-color-main)' color='var(--app-color-text)'>
+    <Box
+      className={styles.app}
+      position='relative'
+      bgcolor='var(--app-color-main)'
+      color='var(--app-color-text)'
+    >
       <Header/>
       <Box component='main' className={styles.main}>
         {initialStateReady &&

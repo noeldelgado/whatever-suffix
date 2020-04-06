@@ -1,9 +1,10 @@
 const { count } = console;
 
 import React, { useEffect, useState, Fragment } from 'react';
-import { Box, CircularProgress, Fade, IconButton, Snackbar } from '@material-ui/core';
+import { Box, CircularProgress, Fab, Fade, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Refresh } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/styles';
 
 import Header from '/components/Header';
 import Logo from '/components/Logo';
@@ -13,11 +14,26 @@ import useGlobal from '/store';
 
 import styles from './App.module.css';
 
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    [theme.breakpoints.down('sm')]: {
+      bottom: theme.spacing(2)
+    },
+    [theme.breakpoints.up('md')]: {
+      bottom: theme.spacing(3)
+    }
+  },
+}));
+
 const App = () => {
   const [globalState, globalActions] = useGlobal();
   const [initialStateReady, setInitialStateReady] = useState(false);
   const [, setToggle] = useState(true);
   const { fetching, error, errorMessage } = globalState;
+  const classes = useStyles();
 
   useEffect(function loadPageFont() {
     (async() => {
@@ -68,19 +84,18 @@ const App = () => {
           <Fragment>
             <Logo/>
             <Text/>
-            <IconButton
-              style={{padding: '12px', borderRadius: '50%'}}
-              onClick={newCombination}
-              disabled={fetching}
-              color='default'
-              aria-label="new random combination"
-            >
-              <Refresh/>
-            </IconButton>
           </Fragment>
         }
       </Box>
       <Footer/>
+      <Fab
+        className={classes.fab}
+        onClick={newCombination}
+        disabled={fetching}
+        aria-label="random combination"
+      >
+        <Refresh/>
+      </Fab>
       <Fade in={fetching}>
         <Box className={styles.loader}>
           <CircularProgress color='inherit' size={32}/>

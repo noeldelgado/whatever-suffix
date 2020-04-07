@@ -1,6 +1,6 @@
 {
   "name": "whatever-suffix",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": "Noel Delgado <pixelia.me@gmail.com> (https://pixelia.me/)",
   "license": "MIT",
   "scripts": {
@@ -11,7 +11,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-function-bind": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
@@ -32,6 +31,7 @@
     "react-textfit": "^1.1.0",
     "safecolor": "^1.0.1",
     "share-url": "^1.0.0",
+    "use-global-hook": "^0.1.12",
     "webfontloader": "^1.6.28",
     "word-list": "^3.1.0"
   }

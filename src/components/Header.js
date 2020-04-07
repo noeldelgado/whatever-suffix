@@ -1,10 +1,10 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import React, { memo, useState } from 'react';
 import { Box, Button, IconButton, Popover, TextField, Tooltip } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { GitHub, Info } from '@material-ui/icons';
 import InfoComponent from '/components/Info';
-import { version } from '/../package.json';
+import useGlobal from '/store';
+import { VERSION } from '/constants';
 import styles from './Header.module.css';
 
 const CssPopover = withStyles({
@@ -32,9 +32,13 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const Header = ({ suffix, onChange }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Header = () => {
+  const [suffix, actions] = useGlobal(
+    state => state.suffix,
+    actions => actions.app
+  );
 
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const id = open ? 'info-popover' : undefined;
 
@@ -75,7 +79,9 @@ const Header = ({ suffix, onChange }) => {
           id='suffix-input-field'
           defaultValue={suffix}
           label='Suffix'
-          onChange={onChange}
+          onChange={(ev) => {
+            actions.setSuffix(ev.currentTarget.value);
+          }}
         />
       </Box>
       <Box>
@@ -83,23 +89,18 @@ const Header = ({ suffix, onChange }) => {
           <Button
             href={process.env.REPOSITORY}
             target='_blank'
-            rel='noopener'
+            rel='noopener noreferrer'
             size='small'
             color='inherit'
             aria-label='view source'
             startIcon={<GitHub/>}
           >
-            {version}
+            {VERSION}
           </Button>
         </Tooltip>
       </Box>
     </Box>
   );
-};
-
-Header.propTypes = {
-  suffix: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
 };
 
 export default memo(Header);

@@ -1,11 +1,19 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Link, Typography } from '@material-ui/core';
-import { version } from '/../package.json';
+import useGlobal from '/store';
+import { VERSION } from '/constants';
+import favicon from '/public/images/favicon-32x32.png';
+
+const internals = {
+  formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  }
+};
 
 function GeneralLink({ url, text }) {
   return (
-    <Link href={url} color='inherit' underline='always' target='_blank' rel='noopener'>
+    <Link href={url} color='inherit' underline='always' target='_blank' rel='noopener noreferrer'>
       {text}
     </Link>
   );
@@ -31,47 +39,62 @@ GituhubLink.propTypes = {
 };
 
 const Info = () => {
+  const [wordsLen] = useGlobal(state => state.wordsLen);
+  const [fontsLen] = useGlobal(state => state.fontsLen);
+
   return (
     <Box pt={3} px={4} pb={4}>
-      <Typography variant='h6'>
-        whatever-script@{version}
-      </Typography>
+      <Box display='flex' alignItems='center' mb={1}>
+        <Box mr={2}>
+          <img src={favicon} width={32} height={32} alt='logo' style={{ display: 'block', boxShadow: '0 0 0 2px', borderRadius: '4px' }}/>
+        </Box>
+        <Box>
+          <Typography variant='h6'>
+            whatever-script
+          </Typography>
+          <Typography variant='subtitle2'>
+            {VERSION}
+          </Typography>
+        </Box>
+      </Box>
 
       <Typography variant='subtitle1' gutterBottom>
         Random word based app inspired by <TwitterLink handler='freezydorito'/>’s {''}
         <TwitterLink handler='WhateverScript'/>.
       </Typography>
 
-      <Typography variant='subtitle1' gutterBottom>
-        It uses <GituhubLink handler='sindresorhus/word-list'/> {''}
-        package to randomly select English words from the {''}
-        <GituhubLink handler='atebits/Words/blob/master/Words/en.txt' text='Letterpress Word List'/> {''}
-        with over 274,925 entries.
-      </Typography>
-
-      <Typography variant='h6'>
-        Credits
-      </Typography>
-
       <Typography component='ul' gutterBottom>
         <li>
-          Material Design, Icons and Fonts by <TwitterLink handler='Google'/>
+          It uses <GituhubLink handler='sindresorhus/word-list'/> {''}
+          with {internals.formatNumber(wordsLen)} entries to randomly select English words from the {''}
+          <GituhubLink handler='atebits/Words/blob/master/Words/en.txt' text='Letterpress Word List'/>. {''}
+          One-letter words are not included. Many common bad words are also filtered out.
+        </li>
+        <li>
+          Uses {fontsLen} <GeneralLink url='https://fonts.google.com/' text='GoogleFonts'/>  {''}
+          to randomly load fonts for every new combination {''}
+          (Hover over or long-press to see the font family name).
+        </li>
+        <li>
+          Uses <GituhubLink handler='jessuni/SafeColor'/> to generate accessible {''}
+          color combinations that complies with {''}
+          <GeneralLink url='https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum' text='WCAG 2.1 success criteria 1.4.3'/>.
+        </li>
+        <li>
+          Material Design, Icons and Fonts by <TwitterLink handler='Google'/>.
         </li>
         <li>
           <GituhubLink handler='mui-org/material-ui' text='Material-UI'/> {''}
-          react components by <GituhubLink handler='mui-org' text='Call-Em-All'/>
+          react components by <GituhubLink handler='mui-org' text='Call-Em-All'/>.
         </li>
         <li>
-          Color combinations using <GituhubLink handler='jessuni/SafeColor'/>
+          <GituhubLink handler='malte-wessel/react-textfit'/> ensures the text is kept on a single line.
         </li>
         <li>
-          <GituhubLink handler='malte-wessel/react-textfit'/> to ensure the text is kept on a single line
+          Favicons generated using <GeneralLink url='https://favicon.io/favicon-converter/' text='favicon.io'/>.
         </li>
         <li>
-          Build using <GeneralLink url='https://parceljs.org/' text='Parcel'/> bundler
-        </li>
-        <li>
-          Favicons generated using <GeneralLink url='https://favicon.io/favicon-converter/' text='favicon.io'/>
+          Build using <GeneralLink url='https://parceljs.org/' text='Parcel'/> bundler.
         </li>
       </Typography>
 

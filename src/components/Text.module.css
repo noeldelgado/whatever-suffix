@@ -1,12 +1,25 @@
-.text {
-  width: 70%;
+.text,
+.tagline {
   max-width: 100%;
-  margin-bottom: 2rem;
   line-height: 1;
   text-align: center;
 }
-@media (max-width: 1024px) {
+
+.text {
+  width: 70%;
+  margin-bottom: 1rem;
+}
+
+.tagline {
+  width: 60%;
+}
+
+@media (max-width: 960px) {
   .text {
-    width: 90%;
+    width: 100%;
+  }
+
+  .tagline {
+    width: 80%;
   }
 }

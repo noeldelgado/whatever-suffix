@@ -8,9 +8,10 @@ import styles from './Text.module.css';
 
 const Text = () => {
   count('Text');
-
-  const [globalState]  = useGlobal();
-  const { mainWord, suffix, tagline, font } = globalState;
+  const [mainWord]  = useGlobal(state => state.mainWord);
+  const [suffix]  = useGlobal(state => state.suffix);
+  const [tagline]  = useGlobal(state => state.tagline);
+  const [font]  = useGlobal(state => state.font);
 
   if (!mainWord && !suffix) {
     return void 0;

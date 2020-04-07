@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const [globalState, globalActions] = useGlobal();
+  const [fetching, globalActions] = useGlobal(state => state.fetching);
+  const [error] = useGlobal(state => state.error);
+  const [errorMessage] = useGlobal(state => state.errorMessage);
   const [initialStateReady, setInitialStateReady] = useState(false);
-  const [, setToggle] = useState(true);
-  const { fetching, error, errorMessage } = globalState;
   const classes = useStyles();
 
   useEffect(function setInitialLoadState() {
@@ -62,8 +62,6 @@ const App = () => {
       globalActions.app.setError(true, err.message);
     }
   }
-
-  // count('App');
 
   return (
     <Box

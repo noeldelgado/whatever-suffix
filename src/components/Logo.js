@@ -3,13 +3,14 @@ import { Box } from '@material-ui/core';
 import useGlobal from '/store';
 import styles from './Logo.module.css';
 
-const { log, count } = console;
+const { count } = console;
 
 const Logo = () => {
   count('Logo');
+  const [logoShape] = useGlobal(state => state.logoShape);
+  const [mainWord] = useGlobal(state => state.mainWord);
+  const [suffix] = useGlobal(state => state.suffix);
 
-  const [globalState] = useGlobal();
-  const { logoShape, mainWord, suffix } = globalState;
   const wordFirstLetter = mainWord.charAt(0).toUpperCase();
   const wordSecondLetter = mainWord.charAt(1).toUpperCase();
   const suffixFirstLetter = suffix?.match(/[a-z]|[A-Z]/)?.[0].toUpperCase() ?? wordSecondLetter;

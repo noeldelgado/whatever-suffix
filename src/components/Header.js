@@ -3,11 +3,9 @@ import { Box, Button, IconButton, Popover, TextField, Tooltip } from '@material-
 import { withStyles } from '@material-ui/core/styles';
 import { GitHub, Info } from '@material-ui/icons';
 import InfoComponent from '/components/Info';
-import { version } from '/../package.json';
 import useGlobal from '/store';
+import { VERSION } from '/constants';
 import styles from './Header.module.css';
-
-const { count } = console;
 
 const CssPopover = withStyles({
   root: {
@@ -39,7 +37,6 @@ const Header = () => {
     state => state.suffix,
     actions => actions.app
   );
-  count('Header');
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -98,7 +95,7 @@ const Header = () => {
             aria-label='view source'
             startIcon={<GitHub/>}
           >
-            {version}
+            {VERSION}
           </Button>
         </Tooltip>
       </Box>

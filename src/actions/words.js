@@ -1,4 +1,3 @@
-const { log, error } = console;
 import WordList from 'word-list/words.txt';
 import { rand } from '/utils';
 const { ceil, floor, random } = Math;
@@ -20,16 +19,11 @@ const internals = {
  * @async
  */
 export async function fetchWords(store) {
-  try {
-    const wordsRes = await fetch(WordList, { cache: 'force-cache' });
-    const wordsData = await wordsRes.text();
-    const words = wordsData.split('\n');
-    store.setState({ words, wordsLen: words.length });
-  }
-  catch(err) {
-    throw err;
-  }
-};
+  const wordsRes = await fetch(WordList, { cache: 'force-cache' });
+  const wordsData = await wordsRes.text();
+  const words = wordsData.split('\n');
+  store.setState({ words, wordsLen: words.length });
+}
 
 /**
  * Selects a random word from the state.words registry array and sets it as the
@@ -39,7 +33,7 @@ export function setRandomWord(store) {
   const { words, wordsLen } = store.state;
   const mainWord = rand(words, wordsLen);
   store.setState({ mainWord });
-};
+}
 
 /**
  * Selects n random words from the state.words registry array, concatenates them
@@ -50,4 +44,4 @@ export function setRandomTagline(store, length = internals.getRandomIntInclusive
   const { words, wordsLen } = store.state;
   const tagline = Array.from({ length }, () => rand(words, wordsLen)).join(' ');
   store.setState({ tagline });
-};
+}

@@ -35,15 +35,11 @@ const App = () => {
   const { fetching, error, errorMessage } = globalState;
   const classes = useStyles();
 
-  useEffect(function loadPageFont() {
+  useEffect(function setInitialLoadState() {
     (async() => {
       try { await globalActions.fonts.loadFont('Roboto:300,400,500,700&display=swap'); }
       catch (err) { /**/ }
-    })();
-  }, [globalActions.fonts]);
 
-  useEffect(function setInitialLoadState() {
-    (async() => {
       try {
         await globalActions.words.fetchWords();
         await globalActions.app.newCombination();
@@ -56,14 +52,7 @@ const App = () => {
         setInitialStateReady(true);
       }
     })();
-
-    const id = setInterval(() => {
-      count('x');
-      setToggle(toggle => !toggle);
-    }, 2000);
-
-    return () => clearInterval(id);
-  }, [globalActions.app, globalActions.words]);
+  }, [globalActions.app, globalActions.words, globalActions.fonts]);
 
   async function newCombination() {
     try {

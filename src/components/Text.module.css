@@ -15,8 +15,11 @@
 }
 
 @media (max-width: 960px) {
-  .text,
-  .tagline {
+  .text {
     width: 100%;
+  }
+
+  .tagline {
+    width: 80%;
   }
 }

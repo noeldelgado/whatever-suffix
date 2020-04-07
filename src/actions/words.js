@@ -44,9 +44,9 @@ export function setRandomWord(store) {
 /**
  * Selects n random words from the state.words registry array, concatenates them
  * and sets it as the state.tagline value
- * @params {Number} [length=2..4] - number of words the tagline shold be composed from
+ * @params {Number} [length=3..4] - number of words the tagline shold be composed from
  */
-export function setRandomTagline(store, length = internals.getRandomIntInclusive(2, 4)) {
+export function setRandomTagline(store, length = internals.getRandomIntInclusive(3, 4)) {
   const { words, wordsLen } = store.state;
   const tagline = Array.from({ length }, () => rand(words, wordsLen)).join(' ');
   store.setState({ tagline });

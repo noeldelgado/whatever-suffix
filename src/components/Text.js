@@ -29,7 +29,7 @@ const Text = () => {
         </Box>
       </Tooltip>
       <Box className={styles.tagline}>
-        <Textfit mode='single' max={40}>
+        <Textfit mode='single' max={30}>
           {tagline}
         </Textfit>
       </Box>

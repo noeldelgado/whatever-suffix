@@ -2,8 +2,6 @@ import SafeColor from 'safecolor';
 import { rand } from '/utils';
 import { LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
 
-const { log } = console;
-
 const internals = {
   colorComponentRe: new RegExp(/[^\d,]/g),
   /**
@@ -43,7 +41,6 @@ export function setError(store, error = true, message = 'Unknown error') {
 }
 
 export function setRandomLogoShape(store) {
-  log('setRandomLogoShape');
   store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
 }
 

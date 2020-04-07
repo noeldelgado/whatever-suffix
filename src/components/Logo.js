@@ -3,10 +3,7 @@ import { Box } from '@material-ui/core';
 import useGlobal from '/store';
 import styles from './Logo.module.css';
 
-const { count } = console;
-
 const Logo = () => {
-  count('Logo');
   const [logoShape] = useGlobal(state => state.logoShape);
   const [mainWord] = useGlobal(state => state.mainWord);
   const [suffix] = useGlobal(state => state.suffix);

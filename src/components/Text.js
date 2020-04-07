@@ -1,5 +1,3 @@
-const { count } = console;
-
 import React, { memo, Fragment } from 'react';
 import { Box, Tooltip } from '@material-ui/core';
 import { Textfit } from 'react-textfit';
@@ -7,7 +5,6 @@ import useGlobal from '/store';
 import styles from './Text.module.css';
 
 const Text = () => {
-  count('Text');
   const [mainWord]  = useGlobal(state => state.mainWord);
   const [suffix]  = useGlobal(state => state.suffix);
   const [tagline]  = useGlobal(state => state.tagline);

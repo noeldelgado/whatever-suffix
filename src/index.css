@@ -39,12 +39,14 @@ svg {
   }
 }
 
-/* Material-UI styles hack
- * Have some issues with the order styles are injected, resulting on base
- * classes overriding sub-classes styles.
- * The issue does not happen on development but on build only
+/* Bundler + Material-UI styles hack
+ * Have some issues with the order styles are injected for production
+ * resulting on base classes overriding sub-classes styles.
+ * Removing the --experimental-scope-hoisting bundler flag solves the issue
+ * I might want to wait for parce@2 stable release as trying to migrate has its
+ * own issues as well
  **/
-.MuiPaper-root.MuiAlert-filledWarning {
+.MuiPaper-root.MuiAlert-filledError {
   color: #fff;
-  background-color: #ff9800;
+  background-color: #f44336;
 }

@@ -14,7 +14,6 @@ import styles from './App.module.css';
 
 const useStyles = makeStyles((theme) => ({
   fab: {
-    position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
     [theme.breakpoints.down('sm')]: {
@@ -79,6 +78,7 @@ const App = () => {
       </Box>
       <Footer/>
       <Fab
+        style={{position: 'absolute'}}
         className={classes.fab}
         onClick={newCombination}
         disabled={fetching}

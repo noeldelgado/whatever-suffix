@@ -1,5 +1,3 @@
-const { count } = console;
-
 import React, { useEffect, useState, Fragment } from 'react';
 import { Box, CircularProgress, Fab, Fade, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';

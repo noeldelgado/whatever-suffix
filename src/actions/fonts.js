@@ -1,4 +1,3 @@
-const { count, log } = console;
 import WebFont from 'webfontloader';
 import { rand } from '/utils';
 
@@ -8,7 +7,7 @@ import { rand } from '/utils';
  * @return {Promise<string|Error>}
  */
 export function loadFont(store, family) {
-  if (!family) throw new Error('No FontFamilyName given')
+  if (!family) throw new Error('No FontFamilyName given');
   return new Promise((resolve, reject) => {
     WebFont.load({
       classes: false,
@@ -28,12 +27,6 @@ export function loadFont(store, family) {
 export async function loadRandomFont(store) {
   const { fonts, fontsLen } = store.state;
   const font = rand(fonts, fontsLen)?.family;
-
-  try {
-    await store.actions.fonts.loadFont(font);
-    store.setState({ font });
-  }
-  catch (err) {
-    throw err;
-  }
-};
+  await store.actions.fonts.loadFont(font);
+  store.setState({ font });
+}

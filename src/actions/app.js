@@ -1,6 +1,10 @@
 import SafeColor from 'safecolor';
 import { rand } from '/utils';
-import { LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
+import {
+  LOGO_SHAPES,
+  LOGO_SHAPES_LEN,
+  TEXT_TRANSFORM_OPTIONS
+} from '/constants';
 
 const internals = {
   colorComponentRe: new RegExp(/[^\d,]/g),
@@ -44,6 +48,10 @@ export function setRandomLogoShape(store) {
   store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
 }
 
+export function setRandomTextTransform(store) {
+  store.setState({ textTrasform: rand(TEXT_TRANSFORM_OPTIONS) });
+}
+
 /**
  * Genetates a random color combination and updates global CSS variables
  */
@@ -72,6 +80,7 @@ export async function newCombination(store) {
   }
   finally {
     store.actions.app.setRandomColorsCombination();
+    store.actions.app.setRandomTextTransform();
     store.actions.app.setRandomLogoShape();
     store.actions.words.setRandomWord();
     store.actions.words.setRandomTagline();

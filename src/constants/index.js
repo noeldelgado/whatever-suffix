@@ -24,3 +24,9 @@ export const LOGO_SHAPES = [
   }
 ];
 export const LOGO_SHAPES_LEN = LOGO_SHAPES.length;
+
+export const TEXT_TRANSFORM_OPTIONS = [
+  'lowercase',
+  'uppercase',
+  'capitalize'
+];

@@ -1,5 +1,5 @@
 import React from 'react';
-import useGlobalHook from 'use-global-hook';
+import globalHook from 'use-global-hook';
 import * as actions from '/actions';
 
 import GoogleFontsList from '/data/google-fonts-list.json';
@@ -11,7 +11,7 @@ import {
   TEXT_TRANSFORM_OPTIONS
 } from '/constants';
 
-export default useGlobalHook(React, {
+export default globalHook(React, {
   fetching: true,
   error: false,
   errorMessage: '',

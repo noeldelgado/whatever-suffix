@@ -29,5 +29,5 @@ export default useGlobalHook(React, {
   // variants
   font: 'sans-serif',
   logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
-  textTrasform: rand(TEXT_TRANSFORM_OPTIONS)
+  textTransform: rand(TEXT_TRANSFORM_OPTIONS)
 }, actions);

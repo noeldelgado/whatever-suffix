@@ -49,7 +49,7 @@ export function setRandomLogoShape(store) {
 }
 
 export function setRandomTextTransform(store) {
-  store.setState({ textTrasform: rand(TEXT_TRANSFORM_OPTIONS) });
+  store.setState({ textTransform: rand(TEXT_TRANSFORM_OPTIONS) });
 }
 
 /**

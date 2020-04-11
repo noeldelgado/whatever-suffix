@@ -28,10 +28,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const [fetching, globalActions] = useGlobal(state => state.fetching);
-  const [error] = useGlobal(state => state.error);
-  const [errorMessage] = useGlobal(state => state.errorMessage);
-  const [composition] = useGlobal(state => state.composition);
+  const [{
+    fetching,
+    error,
+    errorMessage,
+    composition
+  }, globalActions] = useGlobal(state => ({
+    fetching: state.fetching,
+    error: state.error,
+    errorMessage: state.errorMessage,
+    composition: state.composition
+  }));
 
   const [initialStateReady, setInitialStateReady] = useState(false);
   const [layoutClass, setLayoutClass] = useState('');

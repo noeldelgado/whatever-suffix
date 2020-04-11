@@ -9,9 +9,16 @@ const internals = {
 };
 
 const Logo = () => {
-  const [logoShape] = useGlobal(state => state.logoShape);
-  const [mainWord] = useGlobal(state => state.mainWord);
-  const [suffix] = useGlobal(state => state.suffix);
+  const [{
+    logoShape,
+    mainWord,
+    suffix
+  }] = useGlobal(state => ({
+    logoShape: state.logoShape,
+    mainWord: state.mainWord,
+    suffix: state.suffix
+  }));
+
   const [textColor, setTextColor] = useState('');
 
   const wordFirstLetter = mainWord.charAt(0).toUpperCase();

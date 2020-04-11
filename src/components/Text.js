@@ -5,10 +5,17 @@ import * as utils from '/utils';
 import useGlobal from '/store';
 
 const Text = () => {
-  const [font]  = useGlobal(state => state.font);
-  const [mainWord]  = useGlobal(state => state.mainWord);
-  const [suffix]  = useGlobal(state => state.suffix);
-  const [textTransform] = useGlobal(state => state.textTransform);
+  const [{
+    font,
+    mainWord,
+    suffix,
+    textTransform
+  }] = useGlobal(state => ({
+    font: state.font,
+    mainWord: state.mainWord,
+    suffix: state.suffix,
+    textTransform: state.textTransform
+  }));
 
   const [wordTransform, setWordTransform] = useState('');
   const [suffixTransform, setSuffixTransform] = useState('');

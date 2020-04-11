@@ -20,10 +20,8 @@ const Logo = () => {
   }));
 
   const [textColor, setTextColor] = useState('');
-
-  const wordFirstLetter = mainWord.charAt(0).toUpperCase();
-  const wordSecondLetter = mainWord.charAt(1).toUpperCase();
-  const suffixFirstLetter = suffix?.match(internals.reChar)?.[0].toUpperCase() ?? wordSecondLetter;
+  const [firstLetter, setFirstLetter] = useState('');
+  const [secondLetter, setSecondLetter] = useState('');
 
   useEffect(() => {
     if (logoShape.type === 'fill')
@@ -32,14 +30,27 @@ const Logo = () => {
       setTextColor(internals.textColorOutlined);
   }, [logoShape]);
 
+  useEffect(() => {
+    setFirstLetter(mainWord.charAt(0).toUpperCase());
+  }, [mainWord]);
+
+  useEffect(() => {
+    setSecondLetter(suffix?.match(internals.reChar)?.[0].toUpperCase());
+  }, [suffix]);
+
   return (
     <Box position='relative'>
       <svg viewBox='0 0 100 100'>
           {logoShape.path}
-          <text x='50%' y='50%' alignmentBaseline='central' dominantBaseline='middle' textAnchor='middle'
+          <text
+            x='50%'
+            y='50%'
+            alignmentBaseline='central'
+            dominantBaseline='middle'
+            textAnchor='middle'
             style={{fill: textColor}}
           >
-            {wordFirstLetter}{suffixFirstLetter}
+            {firstLetter}{secondLetter}
           </text>
       </svg>
     </Box>

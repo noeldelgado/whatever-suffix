@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import useGlobal from '/store';
-import styles from './Logo.module.css';
 
 const internals = {
   reChar: new RegExp(/[a-z]|[A-Z]/),
@@ -27,13 +26,15 @@ const Logo = () => {
   }, [logoShape]);
 
   return (
-    <Box position='relative' mb={2}>
-      <svg className={styles.svg} viewBox="0 0 100 100">
-        {logoShape.path}
+    <Box position='relative'>
+      <svg viewBox='0 0 100 100'>
+          {logoShape.path}
+          <text x='50%' y='50%' alignmentBaseline='central' dominantBaseline='middle' textAnchor='middle'
+            style={{fill: textColor}}
+          >
+            {wordFirstLetter}{suffixFirstLetter}
+          </text>
       </svg>
-      <Box className={styles.text} style={{color: textColor}}>
-        {wordFirstLetter}{suffixFirstLetter}
-      </Box>
     </Box>
   );
 };

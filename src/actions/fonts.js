@@ -22,11 +22,10 @@ export function loadFont(store, family) {
  * Selects a random font from the `fonts` state registry, loads it and sets
  * state.font if resolved
  * @async
- * @return {Promise<undefined|Error>}
+ * @return {Promise<string|Error>}
  */
 export async function loadRandomFont(store) {
   const { fonts, fontsLen } = store.state;
   const font = rand(fonts, fontsLen)?.family;
-  await store.actions.fonts.loadFont(font);
-  store.setState({ font });
+  return await store.actions.fonts.loadFont(font);
 }

@@ -16,6 +16,19 @@ const internals = {
    */
   getColorComponent(str) {
     return str.replace(this.colorComponentRe, '').split(',');
+  },
+
+  /**
+   * Genetates a random color combination and updates global CSS variables
+   */
+  setRandomColorsCombination() {
+    const mainColor = new SafeColor().random();
+    const textColor = new SafeColor({
+      color: internals.getColorComponent(mainColor)
+    }).random();
+
+    document.documentElement.style.setProperty('--app-color-main', mainColor);
+    document.documentElement.style.setProperty('--app-color-text', textColor);
   }
 };
 
@@ -45,32 +58,6 @@ export function setError(store, error = true, message = 'Unknown error') {
   store.setState({ error, errorMessage: message });
 }
 
-export function setRandomLogoShape(store) {
-  store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
-}
-
-export function setRandomTextTransform(store) {
-  store.setState({ textTransform: rand(TEXT_TRANSFORM_OPTIONS) });
-}
-
-
-export function setRandomComposition(store) {
-  store.setState({ composition: rand(COMPOSITION_OPTIONS) });
-}
-
-/**
- * Genetates a random color combination and updates global CSS variables
- */
-export function setRandomColorsCombination() {
-  const mainColorString = new SafeColor().random();
-  const textColor = new SafeColor({
-    color: internals.getColorComponent(mainColorString)
-  }).random();
-
-  document.documentElement.style.setProperty('--app-color-main', mainColorString);
-  document.documentElement.style.setProperty('--app-color-text', textColor);
-}
-
 /**
  * Generates a whole new random combination
  * - sets and loads a new random font
@@ -80,17 +67,22 @@ export function setRandomColorsCombination() {
  * - sets a random tagline
  */
 export async function newCombination(store) {
+  let font = store.state.font;
   store.actions.app.loading();
+
   try {
-    await store.actions.fonts.loadRandomFont();
+    font = await store.actions.fonts.loadRandomFont();
   }
   finally {
-    store.actions.app.setRandomColorsCombination();
-    store.actions.app.setRandomTextTransform();
-    store.actions.app.setRandomComposition();
-    store.actions.app.setRandomLogoShape();
-    store.actions.words.setRandomWord();
-    store.actions.words.setRandomTagline();
-    store.actions.app.loading(false);
+    internals.setRandomColorsCombination();
+    store.setState({
+      font: font,
+      mainWord: store.actions.words.getRandomWord(),
+      tagline: store.actions.words.getRandomTagline(),
+      composition: rand(COMPOSITION_OPTIONS),
+      textTransform: rand(TEXT_TRANSFORM_OPTIONS),
+      logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
+      fetching: false
+    });
   }
 }

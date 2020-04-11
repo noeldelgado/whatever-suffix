@@ -26,22 +26,20 @@ export async function fetchWords(store) {
 }
 
 /**
- * Selects a random word from the state.words registry array and sets it as the
- * state.mainWord value
+ * Selects a random word from the state.words registry array
+ * @return {string} word - random word from registry
  */
-export function setRandomWord(store) {
+export function getRandomWord(store) {
   const { words, wordsLen } = store.state;
-  const mainWord = rand(words, wordsLen);
-  store.setState({ mainWord });
+  return rand(words, wordsLen);
 }
 
 /**
- * Selects n random words from the state.words registry array, concatenates them
- * and sets it as the state.tagline value
- * @params {Number} [length=3..4] - number of words the tagline shold be composed from
+ * Selects n random words from the state.words registry array and joins them a single string
+ * @param length {[number=3..4]} - total words to return
+ * @return {string} tagline - radndom words from registry
  */
-export function setRandomTagline(store, length = internals.getRandomIntInclusive(3, 4)) {
+export function getRandomTagline(store, length = internals.getRandomIntInclusive(3, 4)) {
   const { words, wordsLen } = store.state;
-  const tagline = Array.from({ length }, () => rand(words, wordsLen)).join(' ');
-  store.setState({ tagline });
+  return Array.from({ length }, () => rand(words, wordsLen)).join(' ');
 }

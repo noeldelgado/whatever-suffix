@@ -56,3 +56,8 @@ export const TEXT_TRANSFORM_OPTIONS = [
   'uppercase',
   'capitalize'
 ];
+
+export const COMPOSITION_OPTIONS = [
+  'column',
+  'row'
+];

@@ -1,16 +1,63 @@
-.app {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+/* state.composition === 'row' */
+.layoutCompositionRow {
+  .logoSymbol {
+    width: 10vmax;
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 960px) {
+    .logoSymbol {
+      width: 10vmax;
+    }
+    .logoTextContainer {
+      width: 80%;
+    }
+  }
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem 3rem;
+/* state.composition === 'column' */
+.layoutCompositionColumn {
+  .logoSymbol {
+    margin-bottom: 0.5rem;
+  }
+
+  .logoTextContainer {
+    text-align: center;
+  }
+
+  .logoTagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 960px) {
+    .logoTextContainer {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.logoSymbol {
+  width: 12vmax;
+  font-size: 50px;
+  font-weight: 700;
+
+  & svg { display: block; }
+}
+
+.logoTextContainer {
+  width: 70%;
+  line-height: 1;
+}
+
+.logoTagline {
+  width: 60%;
+  margin-top: 0.5rem;
+
+  @media (max-width: 960px) {
+    width: 90%;
+  }
 }
 
 .loader {

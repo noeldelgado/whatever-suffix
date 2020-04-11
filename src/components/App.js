@@ -7,7 +7,9 @@ import { makeStyles } from '@material-ui/styles';
 import Header from '/components/Header';
 import Logo from '/components/Logo';
 import Text from '/components/Text';
+import Tagline from '/components/Tagline';
 import Footer from '/components/Footer';
+import { capitalize } from '/utils';
 import useGlobal from '/store';
 
 import styles from './App.module.css';
@@ -29,7 +31,10 @@ const App = () => {
   const [fetching, globalActions] = useGlobal(state => state.fetching);
   const [error] = useGlobal(state => state.error);
   const [errorMessage] = useGlobal(state => state.errorMessage);
+  const [composition] = useGlobal(state => state.composition);
+
   const [initialStateReady, setInitialStateReady] = useState(false);
+  const [layoutClass, setLayoutClass] = useState('');
   const classes = useStyles();
 
   useEffect(function setInitialLoadState() {
@@ -51,6 +56,10 @@ const App = () => {
     })();
   }, [globalActions.app, globalActions.words, globalActions.fonts]);
 
+  useEffect(() => {
+    setLayoutClass(`layoutComposition${capitalize(composition)}`);
+  }, [composition]);
+
   async function newCombination() {
     try {
       await globalActions.app.newCombination();
@@ -62,33 +71,54 @@ const App = () => {
 
   return (
     <Box
-      className={styles.app}
+      display='flex'
+      flex='1'
+      flexDirection='column'
       position='relative'
       bgcolor='var(--app-color-main)'
       color='var(--app-color-text)'
     >
       <Header/>
-      <Box component='main' className={styles.main}>
+      <Box
+        component='main'
+        display='flex'
+        flex={1}
+        flexDirection={composition}
+        alignItems='center'
+        justifyContent='center'
+        pt={4}
+        px={1}
+        pb={6}
+        className={styles[layoutClass]}
+      >
         {initialStateReady &&
           <Fragment>
-            <Logo/>
-            <Text/>
+            <Box className={styles.logoSymbol}>
+              <Logo/>
+            </Box>
+            <Box className={styles.logoTextContainer}>
+              <Text/>
+              <Tagline className={styles.logoTagline}/>
+            </Box>
           </Fragment>
         }
       </Box>
       <Footer/>
       <Fab
-        style={{position: 'absolute'}}
-        className={classes.fab}
         onClick={newCombination}
         disabled={fetching}
         aria-label="random combination"
+        style={{position: 'absolute'}}
+        className={classes.fab}
       >
         <Refresh/>
       </Fab>
       <Fade in={fetching}>
         <Box className={styles.loader}>
-          <CircularProgress color='inherit' size={32}/>
+          <CircularProgress
+            color='inherit'
+            size={32}
+          />
         </Box>
       </Fade>
       <Snackbar
@@ -96,7 +126,11 @@ const App = () => {
         autoHideDuration={6000}
         onClose={() => globalActions.app.setError(false)}
       >
-        <Alert elevation={6} variant='filled' severity='error'>
+        <Alert
+          elevation={6}
+          variant='filled'
+          severity='error'
+        >
           {errorMessage}
         </Alert>
       </Snackbar>

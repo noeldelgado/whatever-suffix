@@ -3,7 +3,8 @@ import { rand } from '/utils';
 import {
   LOGO_SHAPES,
   LOGO_SHAPES_LEN,
-  TEXT_TRANSFORM_OPTIONS
+  TEXT_TRANSFORM_OPTIONS,
+  COMPOSITION_OPTIONS
 } from '/constants';
 
 const internals = {
@@ -52,6 +53,11 @@ export function setRandomTextTransform(store) {
   store.setState({ textTransform: rand(TEXT_TRANSFORM_OPTIONS) });
 }
 
+
+export function setRandomComposition(store) {
+  store.setState({ composition: rand(COMPOSITION_OPTIONS) });
+}
+
 /**
  * Genetates a random color combination and updates global CSS variables
  */
@@ -81,6 +87,7 @@ export async function newCombination(store) {
   finally {
     store.actions.app.setRandomColorsCombination();
     store.actions.app.setRandomTextTransform();
+    store.actions.app.setRandomComposition();
     store.actions.app.setRandomLogoShape();
     store.actions.words.setRandomWord();
     store.actions.words.setRandomTagline();

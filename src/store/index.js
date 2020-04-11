@@ -8,6 +8,7 @@ import {
   DEFAULT_SUFFIXES,
   LOGO_SHAPES,
   LOGO_SHAPES_LEN,
+  COMPOSITION_OPTIONS,
   TEXT_TRANSFORM_OPTIONS
 } from '/constants';
 
@@ -27,6 +28,7 @@ export default globalHook(React, {
   tagline: '',
 
   // variants
+  composition: rand(COMPOSITION_OPTIONS),
   font: 'sans-serif',
   logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
   textTransform: rand(TEXT_TRANSFORM_OPTIONS)

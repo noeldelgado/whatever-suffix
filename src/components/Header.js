@@ -10,10 +10,7 @@ import styles from './Header.module.css';
 const CssPopover = withStyles({
   root: {
     '& .MuiPopover-paper': {
-      backgroundColor: 'var(--app-color-bg)',
-      color: 'rgba(255, 255, 255, 0.87)',
-      borderRadius: 0,
-      maxWidth: '640px'
+      maxWidth: '80ch'
     }
   }
 })(Popover);
@@ -45,10 +42,10 @@ const Header = () => {
   return (
     <Box component='header' className={styles.header} display='flex' alignItems='center' justifyContent='space-between'>
       <Box display='flex' alignItems='center'>
-        <svg width="44px" height="44px" viewBox="0 0 44 44">
-          <path stroke="currentColor" d="M2.5 2.5h41v41h-41z" fill="none"/>
-          <path stroke="currentColor" d="M.5.5h41v41H.5z" fill="none"/>
-          <text style={{fontSize: '18px', fontWeight: 700}}>
+        <svg width={44} height={44} viewBox='0 0 44 44'>
+          <path stroke='currentColor' d='M2.5 2.5h41v41h-41z' fill='none'/>
+          <path stroke='currentColor' d='M.5.5h41v41H.5z' fill='none'/>
+          <text style={{ fontSize: 18, fontWeight: 700 }}>
             <tspan x="14" y="34">w_</tspan>
           </text>
         </svg>

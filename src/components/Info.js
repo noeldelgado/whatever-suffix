@@ -55,7 +55,7 @@ const Info = () => {
         </Box>
         <Box>
           <Typography variant='h6' style={{ lineHeight: 1 }}>
-            whatever-script
+            {process.env.NAME}
           </Typography>
           <Typography variant='subtitle2'>
             {VERSION}

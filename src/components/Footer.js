@@ -6,7 +6,7 @@ import styles from './Footer.module.css';
 
 const internals = {
   getShareOnTwitterUrl: () => ShareUrl.twitter({
-    text: 'whatever-suffix — Generate a random english word with a customizable suffix',
+    text: `${process.env.NAME} - ${process.env.DESCRIPTION} — `,
     url: process.env.HOMEPAGE,
     via: 'pixelia_me'
   })

@@ -5,8 +5,7 @@ export const VERSION = version;
 
 export const DEFAULT_SUFFIXES = [
   '.js',
-  'script',
-  '.io'
+  'script'
 ];
 
 export const LOGO_SHAPES = shapes;

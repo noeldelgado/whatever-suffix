@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Box, Link, Typography } from '@material-ui/core';
 import useGlobal from '/store';
 import { VERSION } from '/constants';
-import favicon from '/public/images/favicon-32x32.png';
 
 const internals = {
   formatNumber(num) {

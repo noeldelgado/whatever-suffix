@@ -31,5 +31,8 @@ export default globalHook(React, {
   composition: rand(COMPOSITION_OPTIONS),
   font: 'sans-serif',
   logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
-  textTransform: rand(TEXT_TRANSFORM_OPTIONS)
+  textTransform: rand(TEXT_TRANSFORM_OPTIONS),
+
+  showTagline: true,
+  showLogo: true
 }, actions);

@@ -12,10 +12,12 @@ const Logo = () => {
   const [{
     logoShape,
     mainWord,
+    showLogo,
     suffix
   }] = useGlobal(state => ({
     logoShape: state.logoShape,
     mainWord: state.mainWord,
+    showLogo: state.showLogo,
     suffix: state.suffix
   }));
 
@@ -37,6 +39,10 @@ const Logo = () => {
   useEffect(() => {
     setSecondLetter(suffix?.match(internals.reChar)?.[0].toUpperCase());
   }, [suffix]);
+
+  if (showLogo === false) {
+    return void 0;
+  }
 
   return (
     <Box position='relative'>

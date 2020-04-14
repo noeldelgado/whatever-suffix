@@ -1,11 +1,6 @@
 import SafeColor from 'safecolor';
+import { COMPOSITION_OPTIONS, TEXT_TRANSFORM_OPTIONS } from '/constants';
 import { rand } from '/utils';
-import {
-  LOGO_SHAPES,
-  LOGO_SHAPES_LEN,
-  TEXT_TRANSFORM_OPTIONS,
-  COMPOSITION_OPTIONS
-} from '/constants';
 
 const internals = {
   colorComponentRe: new RegExp(/[^\d,]/g),
@@ -41,14 +36,6 @@ export function loading(store, bool = true) {
 }
 
 /**
- * Updates state.suffix
- * @param {string} suffix
- */
-export function setSuffix(store, suffix) {
-  store.setState({ suffix });
-}
-
-/**
  * Updates state{error, errorMessage}
  * @param {Bool} [error=true]
  * @param {string} [message='Unknown error']
@@ -66,7 +53,7 @@ export function setError(store, error = true, message = 'Unknown error') {
  * - sets a random word
  * - sets a random tagline
  */
-export async function newCombination(store) {
+export async function generateNewCombination(store) {
   let font = store.state.font;
   store.actions.app.loading();
 
@@ -77,11 +64,11 @@ export async function newCombination(store) {
     internals.setRandomColorsCombination();
     store.setState({
       font: font,
-      mainWord: store.actions.words.getRandomWord(),
-      tagline: store.actions.words.getRandomTagline(),
+      mainWord: store.actions.words.getRandom(),
+      tagline: store.actions.tagline.getRandom(),
+      logoShape: store.actions.logo.getRandom(),
       composition: rand(COMPOSITION_OPTIONS),
       textTransform: rand(TEXT_TRANSFORM_OPTIONS),
-      logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
       fetching: false
     });
   }

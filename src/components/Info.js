@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Link, Typography } from '@material-ui/core';
-import useGlobal from '/store';
+import useStore from '/store';
 import { VERSION } from '/constants';
 
 const internals = {
@@ -37,9 +37,11 @@ GituhubLink.propTypes = {
   text: PropTypes.string
 };
 
-const Info = () => {
-  const [wordsLen] = useGlobal(state => state.wordsLen);
-  const [fontsLen] = useGlobal(state => state.fontsLen);
+const Info = ({ open, onClose }) => {
+  const [{ wordsLen, fontsLen }] = useStore(state => ({
+    wordsLen: state.wordsLen,
+    fontsLen: state.fontsLen
+  }));
 
   return (
     <Box p={3}>

@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Box } from '@material-ui/core';
-import useGlobal from '/store';
+import useStore from '/store';
 
 const internals = {
   reChar: new RegExp(/[a-z]|[A-Z]/),
@@ -8,13 +8,7 @@ const internals = {
   textColorOutlined: 'var(--app-color-text)'
 };
 
-const Logo = () => {
-  const [{
-    logoShape,
-    mainWord,
-    showLogo,
-    suffix
-  }] = useGlobal(state => ({
+  const [{ logoShape, mainWord, showLogo, suffix }] = useStore(state => ({
     logoShape: state.logoShape,
     mainWord: state.mainWord,
     showLogo: state.showLogo,

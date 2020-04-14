@@ -2,15 +2,9 @@ import React, { memo, useEffect, useState } from 'react';
 import { Box, Tooltip } from '@material-ui/core';
 import { Textfit } from 'react-textfit';
 import * as utils from '/utils';
-import useGlobal from '/store';
+import useStore from '/store';
 
-const Text = () => {
-  const [{
-    font,
-    mainWord,
-    suffix,
-    textTransform
-  }] = useGlobal(state => ({
+  const [{ font, mainWord, suffix, textTransform }] = useStore(state => ({
     font: state.font,
     mainWord: state.mainWord,
     suffix: state.suffix,

@@ -10,8 +10,7 @@ import Text from '/components/Text';
 import Tagline from '/components/Tagline';
 import Footer from '/components/Footer';
 import { capitalize } from '/utils';
-import useGlobal from '/store';
-
+import useStore from '/store';
 import styles from './App.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const [{
-    fetching,
-    error,
-    errorMessage,
-    composition
-  }, globalActions] = useGlobal(state => ({
+  const [{ fetching, error, errorMessage, composition }, actions] = useStore(state => ({
     fetching: state.fetching,
     error: state.error,
     errorMessage: state.errorMessage,

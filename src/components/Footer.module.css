@@ -1,8 +1,7 @@
 .footer {
   padding: 0 1rem 1rem;
-}
-@media (max-width: 1024px) {
-  .footer {
+
+  @media (max-width: 960px) {
     padding: 0 0.5rem 0.5rem;
   }
 }

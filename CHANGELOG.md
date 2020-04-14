@@ -2,6 +2,25 @@
 
 ## [Unreleased]
 
+## feature/dfj
+### Added
+- :heavy_plus_sign: `postcss-nested` [`d215511`](d2155112da5f8d4be070d7adc09f9430661b90dd)
+- :sparkles: add textTransform(lowercase, uppercase, capitalize) [`dc94514`](dc94514688b388ca32c5f2a1c2d4ddd2bc49a8fb)
+- :sparkles: outlined logo shapes [`0ac09bb`](0ac09bb4dbc6a7e3ce68bc8fcffe6bd4c28e3daa)
+- :sparkles: add row,column logo composition variations [`a428ea2`](a428ea2a6d9bc7596879eb9de88fd7790f3a7a51)
+- :zap: preconnect to google fonts origin [`5a022e6`](5a022e693007a3d0331eff698c4afac1fd764559)
+- :wrench: `.posthtmlrc.js`
+  - :heavy_plus_sign: `posthtml-expressions` to use `.env` vars on index.html
+- :sparkles: options (showLogo, showTagline)
+
+### Changed
+- :recycle: Text::transform, use{State,Effect} [`edd8ced`](edd8ced725939150b161a3b5a198613d8c5cb385)
+- display info as dialog
+- showTagline default false
+
+### Removed
+- “.io” from DEFAULT_SUFFIXES [`af3cfce`](af3cfce1c02ba5f43a8c9dcecbc2dc60e2705b8c)
+
 ## [0.2.0] - [#2](../../pull/2) - 2020-04-07
 ### Added
 - random tagline

@@ -1,6 +1,6 @@
 import SafeColor from 'safecolor';
+import { COMPOSITION_OPTIONS, TEXT_TRANSFORM_OPTIONS } from '/constants';
 import { rand } from '/utils';
-import { LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
 
 const internals = {
   colorComponentRe: new RegExp(/[^\d,]/g),
@@ -11,6 +11,19 @@ const internals = {
    */
   getColorComponent(str) {
     return str.replace(this.colorComponentRe, '').split(',');
+  },
+
+  /**
+   * Genetates a random color combination and updates global CSS variables
+   */
+  setRandomColorsCombination() {
+    const mainColor = new SafeColor().random();
+    const textColor = new SafeColor({
+      color: internals.getColorComponent(mainColor)
+    }).random();
+
+    document.documentElement.style.setProperty('--app-color-main', mainColor);
+    document.documentElement.style.setProperty('--app-color-text', textColor);
   }
 };
 
@@ -23,14 +36,6 @@ export function loading(store, bool = true) {
 }
 
 /**
- * Updates state.suffix
- * @param {string} suffix
- */
-export function setSuffix(store, suffix) {
-  store.setState({ suffix });
-}
-
-/**
  * Updates state{error, errorMessage}
  * @param {Bool} [error=true]
  * @param {string} [message='Unknown error']
@@ -38,23 +43,6 @@ export function setSuffix(store, suffix) {
 export function setError(store, error = true, message = 'Unknown error') {
   if (!error) return store.setState({ error });
   store.setState({ error, errorMessage: message });
-}
-
-export function setRandomLogoShape(store) {
-  store.setState({ logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN) });
-}
-
-/**
- * Genetates a random color combination and updates global CSS variables
- */
-export function setRandomColorsCombination() {
-  const mainColorString = new SafeColor().random();
-  const textColor = new SafeColor({
-    color: internals.getColorComponent(mainColorString)
-  }).random();
-
-  document.documentElement.style.setProperty('--app-color-main', mainColorString);
-  document.documentElement.style.setProperty('--app-color-text', textColor);
 }
 
 /**
@@ -65,16 +53,23 @@ export function setRandomColorsCombination() {
  * - sets a random word
  * - sets a random tagline
  */
-export async function newCombination(store) {
+export async function generateNewCombination(store) {
+  let font = store.state.font;
   store.actions.app.loading();
+
   try {
-    await store.actions.fonts.loadRandomFont();
+    font = await store.actions.fonts.loadRandomFont();
   }
   finally {
-    store.actions.app.setRandomColorsCombination();
-    store.actions.app.setRandomLogoShape();
-    store.actions.words.setRandomWord();
-    store.actions.words.setRandomTagline();
-    store.actions.app.loading(false);
+    internals.setRandomColorsCombination();
+    store.setState({
+      font: font,
+      mainWord: store.actions.words.getRandom(),
+      tagline: store.actions.tagline.getRandom(),
+      logoShape: store.actions.logo.getRandom(),
+      composition: rand(COMPOSITION_OPTIONS),
+      textTransform: rand(TEXT_TRANSFORM_OPTIONS),
+      fetching: false
+    });
   }
 }

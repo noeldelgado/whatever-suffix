@@ -1,38 +1,42 @@
-import React, { memo, Fragment } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Box, Tooltip } from '@material-ui/core';
 import { Textfit } from 'react-textfit';
-import useGlobal from '/store';
-import styles from './Text.module.css';
+import * as utils from '/utils';
+import useStore from '/store';
 
-const Text = () => {
-  const [mainWord]  = useGlobal(state => state.mainWord);
-  const [suffix]  = useGlobal(state => state.suffix);
-  const [tagline]  = useGlobal(state => state.tagline);
-  const [font]  = useGlobal(state => state.font);
+const Text = ({ className = '' }) => {
+  const [{ font, mainWord, suffix, textTransform }] = useStore(state => ({
+    font: state.font,
+    mainWord: state.mainWord,
+    suffix: state.suffix,
+    textTransform: state.textTransform
+  }));
 
-  if (!mainWord && !suffix) {
-    return void 0;
-  }
+  const [wordTransform, setWordTransform] = useState('');
+  const [suffixTransform, setSuffixTransform] = useState('');
+
+  useEffect(() => {
+    setWordTransform(utils[textTransform](mainWord));
+  }, [textTransform, mainWord]);
+
+  useEffect(() => {
+    setSuffixTransform(utils[textTransform](suffix));
+  }, [textTransform, suffix]);
 
   return (
-    <Fragment>
-      <Tooltip title={font}>
-        <Box
-          className={styles.text}
-          style={{fontFamily: font}}
-        >
-          <Textfit mode='single' max={400}>
-            {mainWord + suffix}
-          </Textfit>
-        </Box>
-      </Tooltip>
-      <Box className={styles.tagline}>
-        <Textfit mode='single' max={30}>
-          {tagline}
+    <Tooltip title={font}>
+      <Box className={className} style={{fontFamily: font}}>
+        <Textfit mode='single' max={400}>
+          {wordTransform + suffixTransform}
         </Textfit>
       </Box>
-    </Fragment>
+    </Tooltip>
   );
+};
+
+Text.propTypes = {
+  className: PropTypes.string
 };
 
 export default memo(Text);

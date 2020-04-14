@@ -1,27 +1,68 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
-import useGlobal from '/store';
-import styles from './Logo.module.css';
+import useStore from '/store';
 
-const Logo = () => {
-  const [logoShape] = useGlobal(state => state.logoShape);
-  const [mainWord] = useGlobal(state => state.mainWord);
-  const [suffix] = useGlobal(state => state.suffix);
+const internals = {
+  reChar: new RegExp(/[a-z]|[A-Z]/),
+  textColorFilled: 'var(--app-color-main)',
+  textColorOutlined: 'var(--app-color-text)'
+};
 
-  const wordFirstLetter = mainWord.charAt(0).toUpperCase();
-  const wordSecondLetter = mainWord.charAt(1).toUpperCase();
-  const suffixFirstLetter = suffix?.match(/[a-z]|[A-Z]/)?.[0].toUpperCase() ?? wordSecondLetter;
+const Logo = ({ className = '' }) => {
+  const [{ logoShape, mainWord, showLogo, suffix }] = useStore(state => ({
+    logoShape: state.logoShape,
+    mainWord: state.mainWord,
+    showLogo: state.showLogo,
+    suffix: state.suffix
+  }));
+
+  const [textColor, setTextColor] = useState('');
+  const [firstLetter, setFirstLetter] = useState('');
+  const [secondLetter, setSecondLetter] = useState('');
+
+  useEffect(() => {
+    if (logoShape.type === 'fill') {
+      setTextColor(internals.textColorFilled);
+    }
+    else {
+      setTextColor(internals.textColorOutlined);
+    }
+  }, [logoShape]);
+
+  useEffect(() => {
+    setFirstLetter(mainWord.charAt(0).toUpperCase());
+  }, [mainWord]);
+
+  useEffect(() => {
+    setSecondLetter(suffix?.match(internals.reChar)?.[0].toUpperCase());
+  }, [suffix]);
+
+  if (showLogo === false) {
+    return void 0;
+  }
 
   return (
-    <Box position='relative' mb={2}>
-      <svg className={styles.svg} viewBox="0 0 100 100">
-        {logoShape.path}
+    <Box className={className}>
+      <svg viewBox='0 0 100 100' style={{display: 'block'}}>
+          {logoShape.path}
+          <text
+            x='50%'
+            y='50%'
+            alignmentBaseline='central'
+            dominantBaseline='middle'
+            textAnchor='middle'
+            style={{fill: textColor}}
+          >
+            {firstLetter}{secondLetter}
+          </text>
       </svg>
-      <Box className={styles.text}>
-        {wordFirstLetter}{suffixFirstLetter}
-      </Box>
     </Box>
   );
+};
+
+Logo.propTypes = {
+  className: PropTypes.string
 };
 
 export default memo(Logo);

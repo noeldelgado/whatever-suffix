@@ -1,16 +1,57 @@
-.app {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+/* state.composition === 'row' */
+.layoutCompositionRow {
+  .logoSymbol {
+    margin-right: 0.5rem;
+
+    & + .logoTextContainer {
+      align-items: initial;
+      text-align: initial;
+    }
+  }
 }
 
-.main {
+/* state.composition === 'column' */
+.layoutCompositionColumn {
+  .logoWrapper {
+    flex-direction: column;
+  }
+  .logoSymbol {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.logoWrapper {
   display: flex;
-  flex: 1;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem 3rem;
+  width: 80%;
+  @media (max-width: 960px) {
+    width: 100%;
+  }
+
+  .logoSymbol {
+    width: 18%;
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  .logoTextContainer {
+    width: 82%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .logoText {
+    width: 100%;
+  }
+
+  .logoTagline {
+    width: 90%;
+    margin-top: 0.5rem;
+  }
 }
 
 .loader {

@@ -1,12 +1,18 @@
 import React from 'react';
-import useGlobalHook from 'use-global-hook';
+import globalHook from 'use-global-hook';
 import * as actions from '/actions';
 
 import GoogleFontsList from '/data/google-fonts-list.json';
 import { rand } from '/utils';
-import { DEFAULT_SUFFIXES, LOGO_SHAPES, LOGO_SHAPES_LEN } from '/constants';
+import {
+  DEFAULT_SUFFIXES,
+  LOGO_SHAPES,
+  LOGO_SHAPES_LEN,
+  COMPOSITION_OPTIONS,
+  TEXT_TRANSFORM_OPTIONS
+} from '/constants';
 
-export default useGlobalHook(React, {
+export default globalHook(React, {
   fetching: true,
   error: false,
   errorMessage: '',
@@ -21,6 +27,12 @@ export default useGlobalHook(React, {
   suffix: rand(DEFAULT_SUFFIXES),
   tagline: '',
 
+  // variants
+  composition: rand(COMPOSITION_OPTIONS),
   font: 'sans-serif',
-  logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN)
+  logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
+  textTransform: rand(TEXT_TRANSFORM_OPTIONS),
+
+  showLogo: true,
+  showTagline: false
 }, actions);

@@ -33,6 +33,6 @@ export default globalHook(React, {
   logoShape: rand(LOGO_SHAPES, LOGO_SHAPES_LEN),
   textTransform: rand(TEXT_TRANSFORM_OPTIONS),
 
-  showTagline: true,
-  showLogo: true
+  showLogo: true,
+  showTagline: false
 }, actions);

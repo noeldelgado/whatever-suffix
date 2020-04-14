@@ -1,9 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress, Fab, Fade, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Refresh } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
-
 import Header from '/components/Header';
 import Logo from '/components/Logo';
 import Text from '/components/Text';
@@ -40,22 +39,22 @@ const App = () => {
 
   useEffect(function setInitialLoadState() {
     (async() => {
-      try { await globalActions.fonts.loadFont('Roboto:300,400,500,700&display=swap'); }
+      try { await actions.fonts.loadFont('Roboto:300,400,500,700&display=swap'); }
       catch (err) { /**/ }
 
       try {
-        await globalActions.words.fetchWords();
-        await globalActions.app.newCombination();
+        await actions.words.fetchWords();
+        await actions.app.generateNewCombination();
       }
       catch (err) {
-        globalActions.app.setError(true, err.message);
+        actions.app.setError(true, err.message);
       }
       finally {
-        globalActions.app.loading(false);
+        actions.app.loading(false);
         setInitialStateReady(true);
       }
     })();
-  }, [globalActions.app, globalActions.words, globalActions.fonts]);
+  }, [actions.app, actions.words, actions.fonts]);
 
   useEffect(() => {
     setLayoutClass(`layoutComposition${capitalize(composition)}`);
@@ -63,10 +62,10 @@ const App = () => {
 
   async function newCombination() {
     try {
-      await globalActions.app.newCombination();
+      await actions.app.generateNewCombination();
     }
     catch (err) {
-      globalActions.app.setError(true, err.message);
+      actions.app.setError(true, err.message);
     }
   }
 
@@ -84,7 +83,6 @@ const App = () => {
         component='main'
         display='flex'
         flex={1}
-        flexDirection={composition}
         alignItems='center'
         justifyContent='center'
         pt={4}
@@ -93,22 +91,20 @@ const App = () => {
         className={styles[layoutClass]}
       >
         {initialStateReady &&
-          <Fragment>
-            <Box className={styles.logoSymbol}>
-              <Logo/>
-            </Box>
+          <Box className={styles.logoWrapper}>
+            <Logo className={styles.logoSymbol}/>
             <Box className={styles.logoTextContainer}>
-              <Text/>
+              <Text className={styles.logoText}/>
               <Tagline className={styles.logoTagline}/>
             </Box>
-          </Fragment>
+          </Box>
         }
       </Box>
       <Footer/>
       <Fab
         onClick={newCombination}
         disabled={fetching}
-        aria-label="random combination"
+        aria-label='random combination'
         style={{position: 'absolute'}}
         className={classes.fab}
       >
@@ -125,7 +121,7 @@ const App = () => {
       <Snackbar
         open={error}
         autoHideDuration={6000}
-        onClose={() => globalActions.app.setError(false)}
+        onClose={() => actions.app.setError(false)}
       >
         <Alert
           elevation={6}

@@ -1,4 +1,5 @@
 import React, { memo, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import useStore from '/store';
 
@@ -8,6 +9,7 @@ const internals = {
   textColorOutlined: 'var(--app-color-text)'
 };
 
+const Logo = ({ className = '' }) => {
   const [{ logoShape, mainWord, showLogo, suffix }] = useStore(state => ({
     logoShape: state.logoShape,
     mainWord: state.mainWord,
@@ -20,10 +22,12 @@ const internals = {
   const [secondLetter, setSecondLetter] = useState('');
 
   useEffect(() => {
-    if (logoShape.type === 'fill')
+    if (logoShape.type === 'fill') {
       setTextColor(internals.textColorFilled);
-    else
+    }
+    else {
       setTextColor(internals.textColorOutlined);
+    }
   }, [logoShape]);
 
   useEffect(() => {
@@ -39,8 +43,8 @@ const internals = {
   }
 
   return (
-    <Box position='relative'>
-      <svg viewBox='0 0 100 100'>
+    <Box className={className}>
+      <svg viewBox='0 0 100 100' style={{display: 'block'}}>
           {logoShape.path}
           <text
             x='50%'
@@ -55,6 +59,10 @@ const internals = {
       </svg>
     </Box>
   );
+};
+
+Logo.propTypes = {
+  className: PropTypes.string
 };
 
 export default memo(Logo);

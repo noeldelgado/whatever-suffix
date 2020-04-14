@@ -30,8 +30,9 @@ const Header = () => {
           <Tooltip title='Info'>
             <IconButton
               color='inherit'
-              onClick={(ev) => setInfoOpen(true)}
+              onClick={() => setInfoOpen(true)}
               aria-label='project info'
+              style={{padding: '12px', borderRadius: '50%'}}
             >
               <Info fontSize='small'/>
             </IconButton>
@@ -44,6 +45,7 @@ const Header = () => {
               color='inherit'
               onClick={(ev) => setSettingsAnchorEl(ev.currentTarget)}
               aria-label='options'
+              style={{padding: '12px', borderRadius: '50%'}}
             >
               <Settings fontSize='small'/>
             </IconButton>
@@ -67,6 +69,7 @@ const Header = () => {
             rel='noopener noreferrer'
             color='inherit'
             aria-label='view source on github (will open in a new window)'
+            style={{padding: '12px', borderRadius: '50%'}}
           >
             <GitHub fontSize='small'/>
           </IconButton>

@@ -2,24 +2,26 @@
 
 ## [Unreleased]
 
-## feature/dfj
+## [0.3.0] - [#3](../../pull/3) - 2020-04-14
 ### Added
-- :heavy_plus_sign: `postcss-nested` [`d215511`](d2155112da5f8d4be070d7adc09f9430661b90dd)
-- :sparkles: add textTransform(lowercase, uppercase, capitalize) [`dc94514`](dc94514688b388ca32c5f2a1c2d4ddd2bc49a8fb)
-- :sparkles: outlined logo shapes [`0ac09bb`](0ac09bb4dbc6a7e3ce68bc8fcffe6bd4c28e3daa)
-- :sparkles: add row,column logo composition variations [`a428ea2`](a428ea2a6d9bc7596879eb9de88fd7790f3a7a51)
-- :zap: preconnect to google fonts origin [`5a022e6`](5a022e693007a3d0331eff698c4afac1fd764559)
-- :wrench: `.posthtmlrc.js`
-  - :heavy_plus_sign: `posthtml-expressions` to use `.env` vars on index.html
-- :sparkles: options (showLogo, showTagline)
+- options/settings component
+- add textTransform(lowercase, uppercase, capitalize) [`dc94514`](https://github.com/noeldelgado/whatever-suffix/commit/dc94514688b388ca32c5f2a1c2d4ddd2bc49a8fb)
+- outlined logo shapes [`0ac09bb`](https://github.com/noeldelgado/whatever-suffix/commit/0ac09bb4dbc6a7e3ce68bc8fcffe6bd4c28e3daa)
+- row,column logo variations [`a428ea2`](https://github.com/noeldelgado/whatever-suffix/commit/a428ea2a6d9bc7596879eb9de88fd7790f3a7a51)
+- `postcss-nested` [`d215511`](https://github.com/noeldelgado/whatever-suffix/commit/d2155112da5f8d4be070d7adc09f9430661b90dd)
+- `posthtml-expressions`
+  - `.posthtmlrc.js`
+  - use .env vars on index.html
+- NAME,DESCRIPTION env vars
 
 ### Changed
-- :recycle: Text::transform, use{State,Effect} [`edd8ced`](edd8ced725939150b161a3b5a198613d8c5cb385)
-- display info as dialog
+- reduce # of store listeners [`d7d1636`](https://github.com/noeldelgado/whatever-suffix/commit/d7d163690930bbd8035ff02f8d0a20393b500f60)
+- preconnect to google fonts origin [`5a022e6`](https://github.com/noeldelgado/whatever-suffix/commit/5a022e693007a3d0331eff698c4afac1fd764559)
 - showTagline default false
+- display info as dialog
 
 ### Removed
-- “.io” from DEFAULT_SUFFIXES [`af3cfce`](af3cfce1c02ba5f43a8c9dcecbc2dc60e2705b8c)
+- “.io” from DEFAULT_SUFFIXES [`af3cfce`](https://github.com/noeldelgado/whatever-suffix/commit/af3cfce1c02ba5f43a8c9dcecbc2dc60e2705b8c)
 
 ## [0.2.0] - [#2](../../pull/2) - 2020-04-07
 ### Added
@@ -61,7 +63,8 @@
 	- [.eslintignore](../blob/master/.eslintignore)
 - [.editorconfig](../blob/master/.editorconfig)
 
-[Unreleased]: https://github.com/noeldelgado/whatever-suffix/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/noeldelgado/whatever-suffix/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/noeldelgado/whatever-suffix/releases/compare/v0.1.0...v0.1.1
